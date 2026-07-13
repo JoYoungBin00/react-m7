@@ -1,0 +1,15 @@
+section {
+
+  margin: 10px;
+  padding: 10px;
+}
+
+article {
+  border: 1px solid #ebebeb;
+  margin: 10px;
+  padding: 10px;
+}
+article.active {
+  border-color: #3498ff;
+  background-color: #ebebeb;
+}
