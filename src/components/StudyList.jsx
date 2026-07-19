@@ -1,26 +1,25 @@
-export default function StudyList({ items, selectedId, onSelect }) {
-  console.log(items);
+import StudyItem from "./StudyItem";
 
-
+export default function StudyList({ items, selectedId, favoriteIds, onSelect, onToggleFavorite }) {
   return (
     <>
       <h2>학습 목록</h2>
-      <section>
-        {items.map(item => (
-          <article
-            key={item.id}
-            className={item.id === selectedId ? "active" : ""}
-            onClick={() => {
-              onSelect(item.id);
-            }}
-          >
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-            <p>분류: {item.category}</p>
-            {item.id === selectedId && <p>선택된 항목입니다</p>}
-          </article>
-        ))}
-      </section>
+      {items.length === 0 ? (
+        <p>조건에 맞는 학습 항목이 없습니다.</p>
+      ) : (
+        <section>
+          {items.map(item => (
+            <StudyItem
+              key={item.id}
+              item={item}
+              isSelected={item.id === selectedId}
+              isFavorite={favoriteIds.includes(item.id)}
+              onSelect={onSelect}
+              onToggleFavorite={onToggleFavorite}
+            />
+          ))}
+        </section>
+      )}
     </>
   );
 }
